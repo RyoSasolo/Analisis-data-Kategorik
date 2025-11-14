@@ -1,0 +1,67 @@
+---
+title: "Tugas2-Ryo Hartawan Sasolo-LMS"
+format: html
+editor: visual
+---
+
+---
+title: "Analisis Jurusan × Platform E-Learning"
+format: html
+---
+
+```{r}
+# Data tabel kontingensi
+platform <- matrix(c(10,20,10,
+                     8,12,10,
+                     5,10,5),
+                   nrow = 3, byrow = TRUE)
+colnames(platform) <- c("Zoom","GoogleMeet","LMSKampus")
+rownames(platform) <- c("Sistem Informasi","Sains Data","Statistika")
+platform <- as.data.frame(platform)
+platform
+```
+
+## 1. Tabel Kontingensi
+
+```{r}
+platform
+```
+
+## 2. Proporsi Gabungan (joint proportion)
+
+```{r}
+prop_joint <- prop.table(as.matrix(platform))
+prop_joint
+```
+
+## 3. Proporsi Marginal untuk Platform
+
+```{r}
+prop_platform <- prop.table(colSums(platform))
+prop_platform
+```
+
+## 4. Proporsi Bersyarat per Jurusan
+
+```{r}
+prop_per_jurusan <- prop.table(as.matrix(platform), 1)
+prop_per_jurusan
+```
+
+## 5. Grafik 100% Stacked Bar
+
+```{r}
+barplot(t(prop_per_jurusan),
+        col = c("skyblue","orange","darkgreen"),
+        beside = FALSE,
+        legend = colnames(platform),
+        main = "Distribusi Platform per Jurusan (100% Stacked)")
+```
+
+## 6. Kesimpulan
+
+-   Proporsi gabungan menunjukkan penyebaran total.
+-   Proporsi marginal memperlihatkan platform paling banyak dipilih.
+-   Proporsi bersyarat menunjukkan preferensi platform dalam tiap jurusan.
+
+## 
